@@ -33,7 +33,9 @@ function setup() {
 
   let newOuterPoint = function( p, p1, p2 ){
 
-    let tetha1 = Math.atan2(pLast[0]-p[0],pLast[1]-p[1]);
+
+    let tetha1 = Math.atan2(p1[0]-p[0],p1[1]-p[1]);
+    console.log("t: ", tetha1);
 
 
     stroke(255,0,0); //rot only if line in x-achse
