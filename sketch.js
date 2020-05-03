@@ -31,31 +31,29 @@ function setup() {
     
   }
 
-  let newOuterPoint = function( p, pLast, pNext ){
+  let newOuterPoint = function( p, p1, p2 ){
 
-    //let tetha1 = Math.atan2(pLast[0]-p[0],pLast[1]-p[1]);
-
-    let v0 = createVector( p[0]     , p[1] );
-    let v1 = createVector( pNext[0] , pNext[1] );
-    let v2 = createVector( pLast[0] , pLast[1] );
-
-    stroke(255,0,0); //rot
-    line( p[0]      , pNext[0]+100  , p[1]   ,pNext[1]-100);
-    line( pLast[0]  , p[2]+100, pLast[0] ,p[3]-100);
+    let tetha1 = Math.atan2(pLast[0]-p[0],pLast[1]-p[1]);
 
 
-    stroke(0,0,255); //blau
-    line( pLast[0]-100 , p[1], pLast[1]+100 ,p[1]);
-    line( p[2]+100 , pNext[1], p[3]-100 ,pNext[1]);
+    stroke(255,0,0); //rot only if line in x-achse
+    line( p[0], p[1] , p2[0] ,p[1]);
+    line( p[0], p2[1], p2[0] ,p2[1]);
+    
+    stroke(255,100,0); // x achse mid line
+    let middX = Math.abs((p[1]-p2[1])/2);
+    line( p[0], p2[1]- middX, p2[0] ,p2[1]-middX);
+
+    stroke(0,0,255); //blau only in y achse
+    line( p1[0], p1[1], p1[0] ,p[1]);
+    line( p[0] , p1[1], p[0]  ,p[1]);
+    
+    stroke(0,100,255); // y achse mid line
+    let middY = Math.abs((p1[0]-p[0])/2);
+    line( p[0] - middY , p1[1], p[0] - middY ,p[1]);
 
 
-
-    //drawArrow( v0, v1, 'red' );
-    //drawArrow( v0, v2, 'blue' );
-   
-    let tetha1 = v1.angleBetween(v2);
-
-    console.log("actuel: ", p, "before: ", pLast, degrees(tetha1), "next: ", pNext);
+    console.log("actuel: ", p, "before: ", p1, "next: ", p2);
 
 };
   
